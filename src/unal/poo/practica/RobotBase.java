@@ -19,10 +19,10 @@ public class RobotBase
             
             //Direction.NORTH, EAST, SOUTH, WEST
             //Definicion de la ubicacion del robot, Ciudad, posicion, Direccion, Numero things en el bolso.
-            estudiante = new Robot(objetos,1,2 , Direction.SOUTH,10);
+            estudiante = new Robot(objetos,0,1 , Direction.EAST,10);
             
 	    //Mover una interseccion en el sentido al cual este apuntando el objeto.
-            recogerPeriodico();
+            Espiral(5);
             //Girar a la izquierda
            
             
@@ -84,7 +84,16 @@ public class RobotBase
             girar_derecha();
             }
             }
+        public static void Espiral (int n){
+        for(int i=n; i!=1;i--){
+            for(int k=0; k<3;k++){
+                moverNcasillas(i);
+            girar_derecha();
+            }
+                }
         }
+}
+        
         
         
         
