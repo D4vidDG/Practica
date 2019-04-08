@@ -22,25 +22,19 @@ public class RobotBase
             estudiante = new Robot(objetos,0, 2, Direction.WEST,10);
             
 	    //Mover una interseccion en el sentido al cual este apuntando el objeto.
-            for(int i=0;i<100;i++){
-            estudiante.move();
-            estudiante.move();
+            int n=2;
+            moverNcasillas(n);
+            for(int i=0;i<3;i++){
+        n=3;
+        moverNcasillas(n);
+        }
+            n=1;
+            moverNcasillas(n);
+            girar_derecha();
             //Girar a la izquierda
-            estudiante.turnLeft();
-            estudiante.move();
-            estudiante.move();
-            estudiante.move();
-            estudiante.turnLeft();
-            estudiante.move();
-            estudiante.move();
-            estudiante.move();
-            estudiante.turnLeft();
-            estudiante.move();
-            estudiante.move();
-            estudiante.move();
-            estudiante.turnLeft();
-            estudiante.move();
-            }
+           
+            
+            
             /*
             //Tomando decisiones, Si puedo tomar un Thing
             boolean puedeTomar = estudiante.canPickThing();
@@ -71,6 +65,19 @@ public class RobotBase
             for (int i = 0; i < parametroEntrada; i++) 
                 estudiante.move();
         }
+        public static void girar_derecha (){
+            estudiante.turnLeft();
+            estudiante.turnLeft();
+            estudiante.turnLeft();
+            }
+        public static void moverNcasillas (int n){
+            for(int i=0;i<n;i++){
+            estudiante.move();
+            }
+            estudiante.turnLeft();
+        }
+        
+        
 
 }
 
