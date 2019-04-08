@@ -19,18 +19,10 @@ public class RobotBase
             
             //Direction.NORTH, EAST, SOUTH, WEST
             //Definicion de la ubicacion del robot, Ciudad, posicion, Direccion, Numero things en el bolso.
-            estudiante = new Robot(objetos,0, 2, Direction.WEST,10);
+            estudiante = new Robot(objetos,1,2 , Direction.SOUTH,10);
             
 	    //Mover una interseccion en el sentido al cual este apuntando el objeto.
-            int n=2;
-            moverNcasillas(n);
-            for(int i=0;i<3;i++){
-        n=3;
-        moverNcasillas(n);
-        }
-            n=1;
-            moverNcasillas(n);
-            girar_derecha();
+            recogerPeriodico();
             //Girar a la izquierda
            
             
@@ -74,10 +66,28 @@ public class RobotBase
             for(int i=0;i<n;i++){
             estudiante.move();
             }
+        }
+        public static void recogerPeriodico (){
+            girar_derecha();
+            for(int i=0;i<3;i++){
+            moverNcasillas(1);
             estudiante.turnLeft();
+            }
+            
+            boolean Hay_Objeto=estudiante.canPickThing();
+            if(Hay_Objeto==true){
+                estudiante.pickThing();
+            }
+            estudiante.turnLeft();
+            for(int i=0;i<3;i++){
+            moverNcasillas(1);
+            girar_derecha();
+            }
+            }
         }
         
         
+        
 
-}
+
 
