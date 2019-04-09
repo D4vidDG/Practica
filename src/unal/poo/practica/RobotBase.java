@@ -22,7 +22,7 @@ public class RobotBase
             estudiante = new Robot(objetos,0,1 , Direction.EAST,10);
             
 	    //Mover una interseccion en el sentido al cual este apuntando el objeto.
-            Espiral(5);
+            Espiral(4);
             //Girar a la izquierda
            
             
@@ -85,8 +85,8 @@ public class RobotBase
             }
             }
         public static void Espiral (int n){
-        for(int i=n; i!=1;i--){
-            for(int k=0; k<3;k++){
+        for(int i=n; i!=0;i--){
+            for(int k=0; k<2;k++){
                 moverNcasillas(i);
             girar_derecha();
             }
