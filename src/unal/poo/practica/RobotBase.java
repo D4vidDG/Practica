@@ -19,38 +19,14 @@ public class RobotBase
             
             //Direction.NORTH, EAST, SOUTH, WEST
             //Definicion de la ubicacion del robot, Ciudad, posicion, Direccion, Numero things en el bolso.
-            estudiante = new Robot(objetos,1,1 , Direction.SOUTH,0);
-            Reordenar();
-	    //Mover una interseccion en el sentido al cual este apuntando el objeto.
+            estudiante = new Robot(objetos,7,1 , Direction.NORTH,0);
+            boolean caja_1[][] = new boolean[6][5];
             
-            //Girar a la izquierda
-           
-            
-            
-            /*
-            //Tomando decisiones, Si puedo tomar un Thing
-            boolean puedeTomar = estudiante.canPickThing();
-            
-            //Tomar un Thing
-            if(puedeTomar == true)
-               estudiante.pickThing();
-            
-            //Especifica el numero de Thing que tiene en robot en el bolso
-            int numeroThings = estudiante.countThingsInBackpack();
-            
-            //Poner Thing, se debe validar que tenga things en el bolso
-            estudiante.putThing();
-                       
-            //Si el frente esta libre de Wall
-            estudiante.frontIsClear();
-            
-            //Invocando una funcion
-            creacionFuncion(4);
-            
-            //Toman un Thing
-            estudiante.pickThing();
-            
-        */    
+            Recojer_objetos(caja_1);
+            moverNcasillas(7);
+            estudiante.turnLeft(); 
+            Dejar_objetos(caja_1);
+            moverNcasillas(1);
 	}
         
         public static void creacionFuncion(int parametroEntrada){
@@ -120,13 +96,47 @@ public class RobotBase
         }
         }
         }
+        public static void Recojer_objetos(boolean matriz [][]){
+            for(int i=0; i<6;i++){
+            moverNcasillas(1);
+            girar_derecha();
+            for(int k=0;k<5;k++){
+                matriz [i][k]=estudiante.canPickThing();
+                if (matriz[i][k]==true){
+                    estudiante.pickThing();
+                }
+                if(k!=4){
+                moverNcasillas(1);
+                }
+                }
+            media_vuelta();
+            moverNcasillas(4);   
+            girar_derecha();
+            }
+            media_vuelta();
+            moverNcasillas(6);
+            estudiante.turnLeft();
+            
         }
-        
-
-        
-        
-        
-        
-
-
-
+        public static void Dejar_objetos (boolean matriz1 [][]){
+            for(int i=0; i<6;i++){
+            moverNcasillas(1);
+            girar_derecha();
+            for(int k=0;k<5;k++){
+                if (matriz1[i][k]==true){
+                    estudiante.putThing();
+                }
+                if(k!=4){
+                moverNcasillas(1);
+                }
+                }
+            media_vuelta();
+            moverNcasillas(4);   
+            girar_derecha();
+            }
+            media_vuelta();
+            moverNcasillas(6);
+            estudiante.turnLeft();      
+        }
+         
+}  
