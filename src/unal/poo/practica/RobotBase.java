@@ -19,14 +19,13 @@ public class RobotBase
             
             //Direction.NORTH, EAST, SOUTH, WEST
             //Definicion de la ubicacion del robot, Ciudad, posicion, Direccion, Numero things en el bolso.
-            estudiante = new Robot(objetos,7,1 , Direction.NORTH,0);
-            boolean caja_1[][] = new boolean[6][5];
-            
+            estudiante = new Robot(objetos,11,1 , Direction.NORTH,0);
+            boolean caja_1[][] = new boolean[10][10];
+            boolean caja_2[][] = new boolean[10][10];
             Recojer_objetos(caja_1);
-            moverNcasillas(7);
-            estudiante.turnLeft(); 
-            Dejar_objetos(caja_1);
-            moverNcasillas(1);
+            Cambiar_sentido_objetos(caja_1,caja_2);
+            Dejar_objetos(caja_2);
+            
 	}
         
         public static void creacionFuncion(int parametroEntrada){
@@ -97,46 +96,58 @@ public class RobotBase
         }
         }
         public static void Recojer_objetos(boolean matriz [][]){
-            for(int i=0; i<6;i++){
+            for(int i=0; i<10;i++){
             moverNcasillas(1);
             girar_derecha();
-            for(int k=0;k<5;k++){
+            for(int k=0;k<10;k++){
                 matriz [i][k]=estudiante.canPickThing();
                 if (matriz[i][k]==true){
                     estudiante.pickThing();
                 }
-                if(k!=4){
+                if(k!=9){
                 moverNcasillas(1);
                 }
                 }
             media_vuelta();
-            moverNcasillas(4);   
+            moverNcasillas(9);   
             girar_derecha();
             }
             media_vuelta();
-            moverNcasillas(6);
-            estudiante.turnLeft();
+            moverNcasillas(10);
+            media_vuelta();
             
         }
-        public static void Dejar_objetos (boolean matriz1 [][]){
-            for(int i=0; i<6;i++){
+        public static void Dejar_objetos (boolean matriz1 [][]){     
+            for(int i=0; i<10;i++){
             moverNcasillas(1);
             girar_derecha();
-            for(int k=0;k<5;k++){
+            for(int k=0;k<10;k++){
                 if (matriz1[i][k]==true){
                     estudiante.putThing();
                 }
-                if(k!=4){
+                if(k!=9){
                 moverNcasillas(1);
                 }
                 }
             media_vuelta();
-            moverNcasillas(4);   
+            moverNcasillas(9);   
             girar_derecha();
             }
             media_vuelta();
-            moverNcasillas(6);
-            estudiante.turnLeft();      
+            moverNcasillas(10);
+            media_vuelta();      
         }
-         
-}  
+        
+        public static void Cambiar_sentido_objetos (boolean matriz[][],boolean matriz_cambiada[][]){
+            for(int i=0; i<10;i++){
+            for(int k=0;k<10;k++){
+                int posicion_contraria=9-k;
+                if (matriz[i][k]==true){
+                    matriz_cambiada[i][posicion_contraria]=true;
+               }else{
+                   matriz_cambiada[i][posicion_contraria]=false; 
+                }
+        }
+        }
+        } 
+}
